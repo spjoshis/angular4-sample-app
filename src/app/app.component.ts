@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { HeroService } from './hero.service';
+import { HeroService } from './service/hero.service';
 
 @Component({
   selector: 'app-root',
@@ -7,7 +7,7 @@ import { HeroService } from './hero.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Hero App';
+  title = 'Angular4 Sample App';
 
   constructor(private heroService: HeroService) { }
 
