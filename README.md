@@ -7,6 +7,16 @@ This is sample application for begineers to learn.
 - Views
 - Multiple Components
 
+## Setup
+- Node.JS
+- Angular4
+
+## Setup
+
+- git clone https://github.com/spjoshis/angular4-sample-app.git
+- git fetch origin master
+- git pull --rebase
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
