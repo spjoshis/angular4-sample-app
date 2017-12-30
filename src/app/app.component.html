@@ -4,6 +4,9 @@
     Welcome to {{ title }}!
   </h1>
 </div>
-<h2>Here are some links to help you start: </h2>
+<nav>
+	<a routerLink="/dashboard">Dashboard</a>
+  	<a routerLink="/heroes">Heroes</a>
+</nav>
 <app-messages></app-messages>
-<app-heroes></app-heroes>
+<router-outlet></router-outlet>
