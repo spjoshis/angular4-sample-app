@@ -11,7 +11,7 @@ const httpOptions = {
 
 @Injectable()
 export class HeroService {
-  private heroesUrl = 'api/employee';  // URL to web api
+  private heroesUrl = 'api/heroes';  // URL to web api
 
   constructor(
     private http: HttpClient,
@@ -21,7 +21,6 @@ export class HeroService {
   getHeroes (): Observable<Hero[]> {
     return this.http.get<Hero[]>(this.heroesUrl)
       .pipe(
-        tap(heroes => this.log(`fetched employees`)),
         catchError(this.handleError('getHeroes', []))
       );
   }
@@ -32,10 +31,7 @@ export class HeroService {
     return this.http.get<Hero[]>(url)
       .pipe(
         map(heroes => heroes[0]), // returns a {0|1} element array
-        tap(h => {
-          const outcome = h ? `fetched` : `did not find`;
-          this.log(`${outcome} hero id=${id}`);
-        }),
+        tap(h => {}),
         catchError(this.handleError<Hero>(`getHero id=${id}`))
       );
   }
@@ -44,7 +40,7 @@ export class HeroService {
   getHero(id: number): Observable<Hero> {
     const url = `${this.heroesUrl}/${id}`;
     return this.http.get<Hero>(url).pipe(
-      tap(_ => this.log(`fetched employee id=${id}`)),
+      tap(h => {}),
       catchError(this.handleError<Hero>(`getHero id=${id}`))
     );
   }
@@ -56,7 +52,7 @@ export class HeroService {
       return of([]);
     }
     return this.http.get<Hero[]>(`api/heroes/?name=${term}`).pipe(
-      tap(_ => this.log(`found employees matching "${term}"`)),
+      tap(h => {}),
       catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
@@ -66,7 +62,7 @@ export class HeroService {
   /** POST: add a new hero to the server */
   addHero (hero: Hero): Observable<Hero> {
     return this.http.post<Hero>(this.heroesUrl, hero, httpOptions).pipe(
-      tap((hero: Hero) => this.log(`added employee w/ id=${hero.id}`)),
+      tap((hero: Hero) => this.log(`Employee has been added successfully!`)),
       catchError(this.handleError<Hero>('addHero'))
     );
   }
@@ -77,7 +73,7 @@ export class HeroService {
     const url = `${this.heroesUrl}/${id}`;
  
     return this.http.delete<Hero>(url, httpOptions).pipe(
-      tap(_ => this.log(`deleted employee id=${id}`)),
+      tap(_ => this.log(`Employee has been removed successfully!`)),
       catchError(this.handleError<Hero>('deleteHero'))
     );
   }
@@ -85,7 +81,7 @@ export class HeroService {
   /** PUT: update the hero on the server */
   updateHero (hero: Hero): Observable<any> {
     return this.http.put(this.heroesUrl, hero, httpOptions).pipe(
-      tap(_ => this.log(`updated employee id=${hero.id}`)),
+      tap(_ => this.log(`Employee ha been updated successfully!`)),
       catchError(this.handleError<any>('updateHero'))
     );
   }
@@ -112,7 +108,8 @@ export class HeroService {
  
   /** Log a HeroService message with the MessageService */
   private log(message: string) {
-    this.messageService.add('HeroService: ' + message);
+    this.messageService.clear();
+    this.messageService.add(message);
   }
 
 }
