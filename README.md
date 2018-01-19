@@ -1,3 +1,5 @@
+[![GitHub issues](https://img.shields.io/badge/angular-4.0-green.svg)](https://github.com/spjoshis/angular4-sample-app) [![GitHub issues](https://img.shields.io/github/issues/spjoshis/angular4-sample-app.svg)](https://github.com/spjoshis/angular4-sample-app/issues)
+
 # Sample Angular 4 App
 
 This is sample application for begineers to learn.
